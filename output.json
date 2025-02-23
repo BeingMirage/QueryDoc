@@ -1,113 +1,137 @@
 {
-    "Headers": "Subject: System Programming and Operating System \n\nClass: CSE Sem IV Div I & II \n\nEXP 3 \n\nTitle:  Lexical Analysis \n\n1)  Implement  Lexical  Analyzer  for  simple  arithmetic  equation  to  separate \n\nidentifiers and operators. \n\n2)  Use  of  FLEX  Tool:  Write  a  program  using  Lex  Specifications  to  implement \nlexical analysis phase of compiler to find whether given letter is a vowel or \nnot. \n\n3)  Use of FLEX Tool: Lex Program to count numbers of lines, words, spaces and \n\ncharacters. \n\nLexical Analysis \n\nTheory: \nI) \nLexical  analysis  is  the  first  phase  of  a  compiler,  responsible  for  converting  a  sequence  of \ncharacters from the source code into a sequence of tokens. It simplifies the parsing process by \ncategorizing  the  input  stream  into  manageable  chunks.  Here's  a  deep  dive  into  the  theory \nbehind lexical analysis: \n\nKey Concepts \n\n1.  Token:  A  token  is  a  sequence  of  characters  that  represent  a  unit  of  meaning  in  the \nsource code, such as keywords, identifiers, operators, and literals. Each token has a \ntype and a value. \n\no  Examples: int (keyword), x (identifier), + (operator), 42 (literal). \n\n2.  Lexeme: A lexeme is the actual sequence of characters that form a token. For example, \n\nin the token int, the lexeme is the string \"int\". \n\n3.  Pattern: A pattern is a rule that describes the structure of lexemes. Patterns are often \n\nspecified using regular expressions. \n\n4.  Symbol  Table:  A  data  structure  used  to  store  information  about  identifiers,  such  as \n\nvariable names and function names, along with their attributes. \n\nII) \n\nUse of FLEX Tool \n\nFlex  (short  for  \"Fast  Lexical  Analyzer  Generator\")  is  a  tool  used  to  generate  lexical \nanalyzers, also known as scanners or tokenizers. These analyzers are used in compilers \nand interpreters to convert a sequence of characters from the source code into a sequence \nof tokens. Flex is particularly useful for creating the lexical analysis phase of a compiler. \n\nHow Flex Works \nFlex takes a set of rules defined by the user, written in a specific syntax, and generates a C \nsource file that implements a lexical analyzer. This file contains code to recognize patterns \nin the input and produce corresponding tokens. \n\nThe function of Lex is as follows: \n\n \n \n \n \n\fo  Firstly lexical analyzer creates a program lex.1 in the Lex language. Then \n\nLex compiler runs the lex.1 program and produces a C program lex.yy.c. \n\no  Finally  C  compiler  runs  the  lex.yy.c  program  and  produces  an  object \n\nprogram a.out. \n\no  a.out is lexical analyzer that transforms an input stream into a sequence of \n\ntokens. \n\nLex file format \n\nA Lex program is separated into three sections by %% delimiters. The formal of \nLex source is as follows: \n\n1.  { definitions }    \n2.  %%   \n3.   { rules }    \n4.  %%    \n5.  { user subroutines }   \n\nDefinitions include declarations of constant, variable and regular definitions. \n\nRules define the statement of form p1 {action1} p2 {action2}....pn {action}. \n\nWhere pi describes  the  regular  expression  and action1 describes  the  actions \nwhat action the lexical analyzer should take when pattern pi matches a lexeme. \n\n \n \n \n \n\fExpression   Description   \n\n\\x \n\n\"xy\" \n\n[xy] \n\n[a-z] \n\n[^x] \n\n. \n\n^x \n\n<y>x \n\nx$ \n\nx? \n\nx* \n\nx+ \n\nx{m,n} \n\nxx|yy \n\nx | \n\n(x) \n\nx/y \n\n{xx} \n\nx, if x is a lex operator   \n\nxy, even if x or y is a lex operator (except \\)   \n\nx or y   \n\na to z \n\nAny character but x   \n\nAny character but newline   \n\nx at the beginning of a line   \n\nx when lex is in start condition y   \n\nx at the end of a line   \n\nOptional x   \n\n0, 1, 2, ... instances of x   \n\n1, 2, 3, ... instances of x   \n\nm through n occurrences of x  \n\nEither xx or yy   \n\nThe action on x is the action for the next rule   \n\nx   \n\nx but only if followed by y   \n\nThe translation of xx from the definitions section   \n\n \n \n \n\fSample Program: \n\n%{ \n\n/*To find whether given letter is a vowel or not*/ \n\n#undef yywrap \n\n#define yywrap() 1 \n\nvoid display(int); \n\n%} \n\n%% \n\n[a|e|i|o|u|] { \n\nint flag=1; \n\ndisplay(flag); \n\nreturn; \n\n} \n\n.+ { \n\n%% \n\nint flag=0; \n\ndisplay(flag); \n\nreturn; \n\n} \n\nvoid display(int flag) \n\n{ \n\nif(flag==1) \n\nprintf(\"The given letter [%s] is a vowel\",yytext); \n\nelse \n\nprintf(\"The given letter [%s] is NOT a vowel\",yytext); \n\nprintf(\"Enter a letter to check if it is a vowel or not\"); \n\nyylex();  \n\n} \n\nmain() \n\n{ \n\n} \n\n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n \n\f//Attach Print of Program and Output \n\nCompilation and Execution: \n\nCreate a folder on Desktop  \n\nflex_programs or whichever name you like Open notepad type in a flex program Save it inside the \nfolder like filename.l  \n\n/*Make sure while saving save it as all files rather than as a text document*/  \n\nGoto to Command Prompt(cmd)  \n\nGoto the directory where you have saved the program  \n\nType in command :- flex filename.l  \n\nType in command :- gcc lex.yy.c  \n\nExecute/Run for windows command promt :- a.exe \n\nKey Flex/Lex Concepts: \n\n•  Regular  Expressions:  Essential  for  defining  patterns.  Learn  the  syntax  for  regular \n\nexpressions (e.g., +, *, ?, [], (), etc.). \n\n•  Actions: The C code executed when a pattern is matched. \n\n•  yytext: A character array containing the matched text. \n\n•  yyleng: The length of the matched text. \n\n•  yylex(): The function that starts the lexical analysis. \n\n•  Start States: Used for handling different contexts within the input (more advanced). \n\nPrint of Programs and its output \n\nConclusion",
+    "Headers": "PURCHASE ORDER #:\n\nDATE:\n\nName:\n\nAddress:\n\nEmail:\n\nCLIENT INFORMATION\n\nPhone:\n\nORDER INFORMATION\n\nPRODUCT NAME\n\nITEM #\n\nPRICE\n\nQTY\n\nSIZE\n\nCOLOUR\n\nTOTAL\n\nSHIPPING INFO\n\nPAYMENT INFO\n\nMethod:\n\nCompany:\n\nTrack #:\n\nArrival Date:\n\nSubtotal:\n\nDiscount:\n\nTaxes:\n\nShipping:\n\nPayment Type:\n\nTOTAL:\n\nNOTES",
     "List_items": [
         [
             [
-                "o Firstly lexical analyzer creates a program lex.1 in the Lex language. Then"
-            ],
-            [
-                "Lex compiler runs the lex.1 program and produces a C program lex.yy.c."
-            ],
-            [
-                "o Finally C compiler runs the lex.yy.c program and produces an object"
-            ],
-            [
-                "program a.out."
-            ],
-            [
-                "o a.out is lexical analyzer that transforms an input stream into a sequence of"
-            ],
-            [
-                "tokens."
-            ]
-        ],
-        [
-            [
-                "Expression",
-                "Description"
-            ],
-            [
-                "\\x",
-                "x, if x is a lex operator"
-            ],
-            [
-                "\"xy\"",
-                "xy, even if x or y is a lex operator (except \\)"
-            ],
-            [
-                "[xy]",
-                "x or y"
-            ],
-            [
-                "[a-z]",
-                "a to z"
-            ],
-            [
-                "[^x]",
-                "Any character but x"
-            ],
-            [
-                ".",
-                "Any character but newline"
-            ],
-            [
-                "^x",
-                "x at the beginning of a line"
-            ],
-            [
-                "<y>x",
-                "x when lex is in start condition y"
-            ],
-            [
-                "x$",
-                "x at the end of a line"
-            ],
-            [
-                "x?",
-                "Optional x"
-            ],
-            [
-                "x*",
-                "0, 1, 2, ... instances of x"
-            ],
-            [
-                "x+",
-                "1, 2, 3, ... instances of x"
-            ],
-            [
-                "x{m,n}",
-                "m through n occurrences of x"
-            ],
-            [
-                "xx|yy",
-                "Either xx or yy"
-            ],
-            [
-                "x |",
-                "The action on x is the action for the next rule"
-            ],
-            [
-                "(x)",
-                "x"
-            ],
-            [
-                "x/y",
-                "x but only if followed by y"
-            ],
-            [
-                "{xx}",
-                "The translation of xx from the definitions section"
-            ],
-            [
-                "",
+                "PURCHASE ORDER #:\nDATE:\nCLIENT INFORMATION\nName:\nAddress:\nEmail: Phone:\nORDER INFORMATION",
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
                 null
             ],
             [
                 "",
-                null
+                "PRODUCT NAME",
+                "ITEM #",
+                "PRICE",
+                "QTY",
+                "SIZE",
+                "COLOUR",
+                "TOTAL",
+                ""
             ],
             [
                 "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                ""
+            ],
+            [
+                null,
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                null
+            ],
+            [
+                null,
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                null
+            ],
+            [
+                null,
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                null
+            ],
+            [
+                null,
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                null
+            ],
+            [
+                null,
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                null
+            ],
+            [
+                null,
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                null
+            ],
+            [
+                null,
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                null
+            ],
+            [
+                null,
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                null
+            ],
+            [
+                "SHIPPING INFO PAYMENT INFO\nMethod: Subtotal: Discount:\nCompany: Taxes: Shipping:\nTrack #: Payment Type:\nArrival Date: TOTAL:\nNOTES",
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
                 null
             ]
         ]
