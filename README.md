@@ -1,4 +1,4 @@
-# RAGBOT & DocExtractor
+# QueryDoc – Intelligent document querying with RAG.
 
 An AI-powered document analysis tool built with Streamlit and LangChain. This project uses Retrieval-Augmented Generation (RAG) techniques to process and extract meaningful insights from PDFs, leveraging Google's Gemini-Pro model.
 
