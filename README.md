@@ -1,62 +1,62 @@
-# QueryDoc – Intelligent document querying with RAG.
+# QueryDoc – AI-Powered PDF Q&A
 
-An AI-powered document analysis tool built with Streamlit and LangChain. This project uses Retrieval-Augmented Generation (RAG) techniques to process and extract meaningful insights from PDFs, leveraging Google's Gemini-Pro model.
+QueryDoc is an AI-powered document analysis tool built with Streamlit and LangChain. It uses Retrieval-Augmented Generation (RAG) techniques and Google's Gemini model to answer questions about your uploaded PDFs.
 
 ## Features
+- Upload and analyze multiple PDF files
+- Ask questions and get context-aware answers
+- Uses FAISS for fast document retrieval
+- Powered by Google's Gemini AI
 
-- **Upload PDFs**: Supports multiple PDF uploads for content extraction.
-- **Text Chunking**: Splits large documents into manageable chunks using `RecursiveCharacterTextSplitter`.
-- **Vector Store**: Uses FAISS to store document embeddings for fast retrieval.
-- **AI-Powered Q&A**: Ask questions related to uploaded documents and get context-aware responses.
-- **Document Extraction Notebook**: `DocExtractor.ipynb` provides an interactive Jupyter Notebook for document text extraction and preprocessing.
+## Getting Started
 
-## Usage
+### 1. Clone the Repository
+```sh
+# If you haven't already, clone your project
+# git clone <your-repo-url>
+cd QueryDoc
+```
 
-### Running RAGBOT
+### 2. Set Up a Virtual Environment (Recommended)
+```sh
+# Create a virtual environment named 'venv'
+python -m venv venv
 
-1. **Set up your Google API Key**:  
-   - Obtain a Google Generative AI API key from [Google AI](https://ai.google.com/).
-2. **Run the Streamlit app**:
-   ```sh
-   streamlit run RAGBOT.py
-   ```
-3. **Upload PDFs & Ask Questions**:
-   - Upload your documents through the sidebar.
-   - Once processed, ask questions related to your documents.
+# Activate the virtual environment
+# On Windows:
+venv\Scripts\activate
+# On macOS/Linux:
+# source venv/bin/activate
+```
 
+### 3. Install Dependencies
+```sh
+pip install -r requirements.txt
+```
+
+### 4. Run QueryDoc with Streamlit
+```sh
+streamlit run RAGBOT.py
+```
+
+- The app will open in your browser (usually at http://localhost:8501).
+- Enter your own Google API key, or use the default provided in the app.
+- Upload your PDF files and start asking questions!
 
 ## File Structure
-
 ```
-📂 ragbot-doc-extractor
-├── RAGBOT.py                # Streamlit-based chatbot for document analysis
-├── DocExtractor.ipynb       # Jupyter Notebook for document extraction
-├── requirements.txt         # Dependencies list
-└── README.md                # Project documentation
-```
-
-## Dependencies
-
-- Python 3.8+
-- `streamlit`
-- `PyPDF2`
-- `langchain`
-- `FAISS`
-- `google-generativeai`
-- `jupyter`
-- `langchain-community`
-
-Install dependencies using:
-```sh
-pip install -r RAGrequirements.txt
+QueryDoc/
+├── RAGBOT.py           # Main Streamlit app
+├── DocExtractor.ipynb  # Jupyter notebook for PDF extraction (optional)
+├── requirements.txt    # Python dependencies
+├── README.md           # Project documentation
+├── ...                 # Your PDF files and outputs
 ```
 
-## Contributing
-Feel free to open issues or submit pull requests for improvements.
+## Notes
+- Python 3.8+ is recommended.
+- For best results, use your own Google Generative AI API key.
+- All dependencies are listed in requirements.txt.
 
 ## License
-This project is licensed under the MIT License.
-
----
-
-Enjoy exploring AI-powered document analysis! 🚀
+MIT License
