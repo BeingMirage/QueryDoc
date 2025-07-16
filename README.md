@@ -52,7 +52,7 @@ An AI-powered document analysis tool built with Streamlit and LangChain. This pr
 - `FAISS`
 - `google-generativeai`
 - `jupyter`
-- 'langchain-community'
+- `langchain-community`
 
 Install dependencies using:
 ```sh
