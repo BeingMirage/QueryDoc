@@ -9,27 +9,29 @@ from langchain.chains.question_answering import load_qa_chain
 from langchain.prompts import PromptTemplate
 import os
 
-st.set_page_config(page_title="Document Genie", layout="wide")
+# Set the default API key
+DEFAULT_API_KEY = "AIzaSyCgyPPMTwY0E2-pzI0r3IuIO2CERJ1JO3Y"
+
+st.set_page_config(page_title="QueryDoc:", layout="wide")
 
 st.markdown("""
-## AI-Powered Document Analysis
-This tool helps you quickly extract insights from your documents using advanced AI. Built on a Retrieval-Augmented Generation (RAG) framework and powered by Google's Gemini-PRO model, it processes PDFs, structures the information, and delivers accurate, context-aware responses.
+## QueryDoc: AI-Powered PDF Q&A
 
-How It Works
-Enter Your API Key
+Upload your PDFs, ask questions, and get instant, context-aware answers using Google's Gemini AI.
 
-To enable AI-powered responses, enter your Google API key. Get one here.
-Upload Your Documents
-
-Upload multiple PDFs, and the system will analyze and organize the content for easy access.
-Ask Your Questions
-
-Once processing is complete, ask any question related to your documents and receive precise, relevant answers instantly.
-This approach ensures efficient document analysis, saving time and providing valuable insights.
+**Enter your Google API Key if you have your own, or use the default provided below.**
 """)
 
+# Input for API key, with a note about the default
+api_key = st.text_input(
+    "Enter your Google API Key (or leave blank to use the default):",
+    type="password",
+    key="api_key_input"
+)
 
-api_key = st.text_input("Enter your Google API Key:", type="password", key="api_key_input")
+# Use default if not provided
+if not api_key:
+    api_key = DEFAULT_API_KEY
 
 def get_pdf_text(pdf_docs):
     text = ""
@@ -79,7 +81,7 @@ def user_input(user_question, api_key):
     st.write("Reply: ", response["output_text"])
 
 def main():
-    st.header("AI clone chatbot💁")
+    st.header("Hey! How can I help you?")
 
     user_question = st.text_input("Ask a Question from the PDF Files", key="user_question")
 
