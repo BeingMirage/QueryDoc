@@ -24,14 +24,6 @@ An AI-powered document analysis tool built with Streamlit and LangChain. This pr
    - Upload your documents through the sidebar.
    - Once processed, ask questions related to your documents.
 
-### Using DocExtractor
-
-1. Open `DocExtractor.ipynb` in Jupyter Notebook:
-   ```sh
-   jupyter notebook DocExtractor.ipynb
-   ```
-2. Run each cell to extract and preprocess text from PDFs.
-3. Modify text processing steps as needed for your specific use case.
 
 ## File Structure
 
